@@ -1,17 +1,20 @@
 package Brd2;
 
 import java.util.Scanner;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 public class DataV {
 
 	public static void main(String[] args) {
-//		Scanner sc=new Scanner(System.in);
-//		Object objm;
-//		String sp;
-//		System.out.println("Enter the field:");
+		Scanner sc=new Scanner(System.in);
+		Object objm;
+		String sp;
+	//	System.out.println("Enter the field:");
 //		objm=sc.nextLine();
-//		DataType(objm,"int");
+		System.out.println(DataType(454456566,"Short"));
 //		System.out.println(DataLength(objm,(byte)15));
 //		System.out.println("Enter the restricted special characters:");
 //		sp=sc.nextLine();
@@ -23,17 +26,25 @@ public class DataV {
 		System.out.println(DomainValue(s,values));*/
 		
 //		System.out.println(EmailValidation("perurisivacharan@gmail.com"));
-		
+//		SimpleDateFormat sm=new SimpleDateFormat("yyyy/MM/dd");
+//		System.out.println(FormatValidation("1996/08/24",sm));
 
 	}
-	/*
-	static boolean DataType(Object obj,String ds)
-  	{  
-		boolean b = false;
-  	    
-		
-		return b;
-	}*/
+	
+	static boolean DataType(Object obj, String st)
+  	{ 	System.out.println(obj);
+		System.out.println(st);
+		switch(st)
+		{
+		case "Byte":	if(obj.getClass().getSimpleName().equals("Byte"))return true; 
+		case "Short":   if(obj.getClass().getSimpleName().equals("Short"))return true; 
+		case "Integer": if(obj.getClass().getSimpleName().equals("Integer"))return true; 
+		case "Character":   if(obj.getClass().getSimpleName().equals("Character"))return true; 
+		case "String":  if(obj.getClass().getSimpleName().equals("String"))return true; 
+	
+		}
+		return false;
+}
 	static boolean DataLength(Object obj, byte length)
 	{
 		boolean b=false;
@@ -64,12 +75,21 @@ public class DataV {
 			if(values.get(i)==obj) return true;
 		return b;
 	}
-	static boolean FormatValidation()
-	{
-		boolean b=false;
+	static boolean FormatValidation(String date1,SimpleDateFormat sm) 
+	{	
+		sm.setLenient(false);
+		try
+		{
+			sm.parse(date1);
+			return true;
+		}
+		catch(ParseException e)
+		{
+			return false;
+		}
 		
-		return b;
-	}
+		
+		}
 	static boolean EmailValidation(String email)
 {
 	 
